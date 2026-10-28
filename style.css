@@ -28,10 +28,6 @@
 #requirements .head--chara > .head__photos { position: static; }
 .head__chara { display: block; width: 7.6em; }
 .head__chara--sm { width: 6.6em; }
-.head__duo { position: absolute; right: 0; bottom: -0.2em; display: flex; align-items: end; gap: 0.2em; }
-.head__duo-castle { display: block; width: 4.6em; }
-.head__duo-walker { display: block; width: 5em; }
-.head__duo img { display: block; width: 100%; height: auto; }
 img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(--line); border-radius: 50%; }
 .head__photos .head__photo { width: 6.4em; }
 .head__photos { display: flex; gap: 0.4em; }
@@ -58,15 +54,20 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
 
 .pond { position: relative; height: 24dvh; margin-inline: calc(var(--gutter) * -1); flex-shrink: 0; }
 .pond__water { position: absolute; left: 6%; right: -6%; bottom: 0; height: 62%; background: var(--color-blue); border: var(--line); border-radius: 52% 48% 44% 56% / 60% 52% 48% 40%; }
-.pond__chara { position: absolute; left: 14%; bottom: 6%; height: 92%; }
+.pond__chara { position: absolute; left: 8%; bottom: 6%; height: 92%; }
 .pond__chara img { height: 100%; width: auto; }
-.bubble { position: absolute; height: 50%; aspect-ratio: 600 / 440; }
-.bubble img { width: 100%; height: auto; }
-.bubble--1 { left: 38%; top: -4%; height: 54%; --pf-delay: 200ms; }
-.bubble--2 { right: 0; top: 14%; height: 46%; --pf-delay: 600ms; }
-.bubble--3 { left: 56%; bottom: 0; height: 42%; --pf-delay: 1000ms; }
 
-.scene { position: relative; height: 22dvh; flex-shrink: 0; border: var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); rotate: -1deg; }
+.post { position: absolute; height: 92%; aspect-ratio: 0.84; }
+.post__card { display: block; height: 100%; padding: 5% 5% 0; background: var(--color-base); border: var(--line); border-radius: 12px; box-shadow: 4px 4px 0 var(--color-line); }
+.post__img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
+.post__bar { display: flex; gap: 8%; padding: 5% 2% 0; }
+.post__bar svg { width: 16%; aspect-ratio: 1; fill: none; stroke: var(--color-line); stroke-width: 2.4; stroke-linejoin: round; }
+.post__bar svg:first-child { fill: var(--color-pink); }
+.post--1 { left: 38%; top: -6%; rotate: -6deg; --pf-delay: 200ms; }
+.post--2 { right: 0; top: 0; rotate: 5deg; --pf-delay: 500ms; }
+.post--3 { left: 57%; top: 24%; height: 80%; rotate: -2deg; z-index: 1; --pf-delay: 800ms; }
+
+.scene { position: relative; height: 20dvh; flex-shrink: 0; border: var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); rotate: -1deg; }
 .scene__img { width: 100%; height: 100%; object-fit: cover; object-position: center 70%; --pf-radius: 15px; border-radius: 15px; }
 .scene.pf-drive-by .scene__cloud { --pf-w: 20%; --pf-b: 66%; --pf-t: 14s; }
 .scene.pf-drive-by .scene__cloud--2 { --pf-w: 14%; --pf-b: 78%; --pf-t: 19s; --pf-d: -8s; }
@@ -108,7 +109,7 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
 .ticket-nav__btn { display: grid; place-items: center; width: 2.4em; aspect-ratio: 1; padding: 0; color: var(--color-ink); background: var(--color-base); border: var(--line-thin); border-radius: 50%; cursor: pointer; }
 .ticket-nav__btn svg { width: 1.1em; height: 1.1em; }
 .ticket-nav__btn--prev svg { scale: -1 1; }
-.tickets { flex-shrink: 0; display: flex; gap: 0.8em; margin-inline: calc(var(--gutter) * -1); padding: 0.2em var(--gutter) 0.6em; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.tickets { flex-shrink: 0; display: flex; align-items: flex-start; gap: 0.8em; margin-inline: calc(var(--gutter) * -1); padding: 0.2em var(--gutter) 0.6em; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
 .tickets::-webkit-scrollbar { display: none; }
 .ticket { position: relative; flex: 0 0 88%; display: grid; gap: 0.3em; align-content: start; padding: 1em; background: var(--color-base); border: var(--line); border-radius: var(--radius-card); scroll-snap-align: center; }
 .ticket__chara { position: absolute; right: 0.8em; top: 0.6em; width: 4.2em; height: auto; }
@@ -155,6 +156,7 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
 .sea__chara img { width: 100%; height: auto; }
 .sea__copy { position: absolute; left: var(--gutter); bottom: 1.2em; font-size: var(--fs-min); letter-spacing: 0.06em; color: var(--color-on-dark); }
 
+.logo .logo__mark { width: auto; height: 44px; }
 @media (min-width: 960px) {
   .stage { background: var(--color-pale); }
   .rail { overflow: hidden; }
@@ -167,7 +169,7 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
   content: ""; position: absolute; inset: calc(var(--header-h) + 4px) 0 0; z-index: -1; pointer-events: none;
   background-repeat: no-repeat; animation: props-drift 6s ease-in-out infinite alternate;
 }
-#p1 .page__inner::before { background-image: url(assets/illust/cloud.webp), url(assets/illust/torii.webp); background-size: 21% auto, 18% auto; background-position: 96% 2%, 97% 99%; }
+#p1 .page__inner::before { background-image: url(assets/illust/torii.webp); background-size: 18% auto; background-position: 97% 99%; }
 #p3 .page__inner::before { background-image: url(assets/illust/tower.webp); background-size: 11% auto; background-position: 97% 99.5%; }
 #p4 .page__inner::before { background-image: url(assets/illust/cloud.webp); background-size: 20% auto; background-position: 2% 1%; }
 #p5 .page__inner::before { background-image: url(assets/illust/cloud.webp); background-size: 15% auto; background-position: 96% 99%; }
@@ -187,14 +189,12 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
   .txt { gap: 0.45em; }
   .br-tall { display: none; }
   .pond { height: 19dvh; }
-  .scene { height: 17dvh; }
+  .scene { height: 14dvh; }
   .ticket { flex-basis: 93%; padding: 0.7em 0.75em; gap: 0.15em; }
   .ticket__q { line-height: 1.42; letter-spacing: 0; }
   .town { height: 16dvh; }
   .head__chara--sm { width: 3em; }
   .lead__chara { width: 5.6em; }
-  .head__duo-castle { width: 3.6em; }
-  .head__duo-walker { width: 4em; }
   .trip { padding-block: 0.4em; }
   .trip__row { line-height: 1.35; }
   .job__body { line-height: 1.45; }
@@ -226,8 +226,8 @@ img.head__photo { height: auto; aspect-ratio: 1; object-fit: cover; border: var(
 }
 @media (min-height: 860px) {
   .page { --sp-g: 1.9em; --lh-body: 1.95; }
-  .pond { height: 24dvh; }
-  .scene { height: 21dvh; }
+  .pond { height: 21dvh; }
+  .scene { height: 18dvh; }
   .head__chara { width: 8.5em; }
   .allow__item { padding-block: 0.6em; }
   .jobs { gap: 0.8em; }
